@@ -1,10 +1,11 @@
-import { combineReducers, createStore } from 'redux';
-import { postsReducer } from './reducers/postReducer';
-import thunk from 'redux-thunk'
-import { applyMiddleware } from 'redux';
+import {applyMiddleware,createStore} from 'redux';
+import thunk from 'redux-thunk';
+import { createLogger } from 'redux-logger';
+import { authReducer } from './reducers/authReducer';
 
-const reducer=combineReducers({
-    posts:postsReducer
+const logger=createLogger({
+    collapsed:true,
+    diff:true
 })
 
-export const store=createStore(reducer,applyMiddleware(thunk))
+export const store=createStore(authReducer,applyMiddleware(thunk,logger));
